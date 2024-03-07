@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Dimensions, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { SCREENS } from '../constants/screens';
-import Save from "../../assets/icons/saved.svg"
 import LinearGradient from 'react-native-linear-gradient';
 import DishCard from '../Components/DishCard';
 const { width, height } = Dimensions.get("window");
 import dishes from "../constants/data"
+import FilterModal from '../Components/FilterModal';
 
 export default function Home({ navigation }) {
     const [selectedTab, setSelectedTab] = useState('Restaurants');
     const [filter, setFilter] = useState("");
     const [data, setData] = useState(dishes);
+    const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
 
     const handleFilterChange = (text) => {
         setFilter(text);
@@ -24,8 +25,36 @@ export default function Home({ navigation }) {
         )
 
         setData(filterData)
-        console.log(data);
     }
+
+    const handleFilterPress = () => {
+        setIsFilterModalVisible(true);
+    };
+
+    const handleFilterModalClose = () => {
+        setIsFilterModalVisible(false);
+    };
+
+    const handleApplyFilter = (selectedFilters) => {
+        console.log(selectedFilters);
+
+        if (selectedFilters.length === 0) {
+            setData(dishes);
+        } else {
+            const filteredData = dishes.filter((item) => {
+                return (
+                    selectedFilters.some((filter) =>
+                        item.dishName.toLowerCase().includes(filter.toLowerCase())
+                    ) ||
+                    selectedFilters.some((filter) =>
+                        item.dishCategories.includes(filter)
+                    )
+                );
+            });
+
+            setData(filteredData);
+        }
+    };
 
     return (
         <View style={{ backgroundColor: "rgba(250, 249, 246, 1)", padding: 20, height, fontFamily: "" }}>
@@ -36,7 +65,7 @@ export default function Home({ navigation }) {
             <View style={styles.inputContainer}>
                 <Image style={styles.searchIcon} source={require("../../assets/icons/search-normal.png")} />
                 <TextInput placeholderTextColor="#B5B5B5" placeholder='Search' style={styles.input} onChangeText={handleFilterChange} value={filter} />
-                <TouchableOpacity style={styles.filterIcon}>
+                <TouchableOpacity style={styles.filterIcon} onPress={handleFilterPress}>
                     <Image source={require("../../assets/icons/filter.png")} />
                 </TouchableOpacity>
             </View>
@@ -58,7 +87,7 @@ export default function Home({ navigation }) {
                 <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
                     <View>
                         <Text style={{ fontSize: 20, fontFamily: "Urbanist-SemiBold", color: "#122C3E" }}>Satisfy your cravings</Text>
-                        <Text style={{ fontSize: 12, fontFamily: "Urbanist-Medium", color: "#122C3E" }}>Restaurants that suits to your palate</Text>
+                        <Text style={{ fontSize: 13, marginTop: 5, fontFamily: "Urbanist-Medium", color: "#122C3E" }}>Restaurants that suits to your palate</Text>
                     </View>
                     <View>
                         <TouchableOpacity onPress={() => navigation.navigate(SCREENS.ALLMEALS)}>
@@ -74,6 +103,11 @@ export default function Home({ navigation }) {
                     </View>
                 </ScrollView>
             </View>
+            <FilterModal
+                visible={isFilterModalVisible}
+                onClose={handleFilterModalClose}
+                onApplyFilter={handleApplyFilter}
+            />
         </View>
     );
 }

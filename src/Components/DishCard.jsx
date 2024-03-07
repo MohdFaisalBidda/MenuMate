@@ -1,20 +1,20 @@
-import { View, Text, Image, Dimensions } from 'react-native'
+import { View, Text, Image, Dimensions, StyleSheet } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 const { width, height } = Dimensions.get("window");
 
 
-export default function DishCard({ name, from, cat1, cat2, cat3 }) {
+export default function DishCard({ name, from, cat1, cat2, cat3, containerStyle, imageStyles, gradiendStyles }) {
     return (
-        <View >
-            <Image style={{ width: 250, height: 330, objectFit: "contain" }} source={require("../../assets/images/dish.png")} />
+        <View style={{ ...containerStyle, }}>
+            <Image style={[styles.dishImage, imageStyles]} source={require("../../assets/images/dish.png")} />
             <Image style={{ position: "absolute", left: 30, top: 10, width: 40, height: 40, objectFit: "contain" }} source={require("../../assets/icons/save.png")} />
             <Image style={{ position: "absolute", right: 30, top: 10, width: 40, height: 40 }} source={require("../../assets/icons/fav.png")} />
             <LinearGradient
                 colors={['rgba(0, 0, 0, 0)', '#000000']}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 0, y: 1 }}
-                style={{ position: 'absolute', bottom: 0, left: 8, width: 236, height: "50%", justifyContent: 'flex-end', borderRadius: 25, gap: 10 }}
+                style={[{ position: 'absolute', bottom: 0, left: 0, width: width / 1.91, height: "50%", justifyContent: 'flex-end', borderRadius: 25, gap: 10 }, gradiendStyles]}
             >
                 <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 20, fontFamily: "Urbanist-SemiBold", color: "#FFFFFF", textAlign: 'left', marginLeft: 10 }}>{name}</Text>
                 <Text numberOfLines={1} ellipsizeMode="tail" style={{ fontSize: 20, fontFamily: "Urbanist-SemiBold", color: "#FFFFFF", textAlign: 'left', marginLeft: 10 }}>{from}</Text>
@@ -29,3 +29,9 @@ export default function DishCard({ name, from, cat1, cat2, cat3 }) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    dishImage: {
+        width: width / 1.91, height: 300, objectFit: "contain"
+    }
+})
