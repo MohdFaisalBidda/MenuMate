@@ -114,7 +114,7 @@ export default function Home({ navigation }) {
                 <ScrollView horizontal style={{ marginVertical: 20 }}>
                     <View style={{ flexDirection: "row", gap: 10 }}>
                         {data?.map((item) => (
-                            <DishCard name={item.dishName} from={item.dishFrom} cat1={item.dishCategories[0]} cat2={item.dishCategories[1]} cat3={item.dishCategories[2]} />
+                            <DishCard key={item.dishName} name={item.dishName} from={item.dishFrom} cat1={item.dishCategories[0]} cat2={item.dishCategories[1]} cat3={item.dishCategories[2]} />
                         ))}
                     </View>
                 </ScrollView>
