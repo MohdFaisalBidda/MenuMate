@@ -15,7 +15,7 @@ export default function AllMeals({ navigation }) {
       cat2={item.dishCategories[1]}
       cat3={item.dishCategories[2]}
       containerStyle={{ flexDirection: "row", marginHorizontal: 8, marginVertical: 15, borderRadius: 20 }}
-      imageStyles={{ width: width / 2.3, height: height / 2.5, objectFit: "fit", borderRadius: 20 }}
+      imageStyles={{ width: width / 2.3, height: height / 2.5, objectFit: "fill", borderRadius: 20 }}
       gradiendStyles={{ width: width / 2.3 }}
     />
   );

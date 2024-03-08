@@ -111,7 +111,7 @@ export default function Home({ navigation }) {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <ScrollView horizontal style={{ marginVertical: 20 }}>
+                <ScrollView horizontal style={{ paddingVertical:20 }}>
                     <View style={{ flexDirection: "row", gap: 10 }}>
                         {data?.map((item) => (
                             <DishCard key={item.dishName} name={item.dishName} from={item.dishFrom} cat1={item.dishCategories[0]} cat2={item.dishCategories[1]} cat3={item.dishCategories[2]} />

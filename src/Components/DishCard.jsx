@@ -8,11 +8,12 @@ export default function DishCard({ name, from, cat1, cat2, cat3, containerStyle,
     return (
         <View style={{ ...containerStyle,position:"relative" }}>
             <Image style={[styles.dishImage, imageStyles]} source={require("../../assets/images/dish.png")} />
-            <Image style={{ position: "absolute", left: 30, top: 20, objectFit: "contain",width:22,height:22,objectFit:"contain"  }} source={require("../../assets/icons/save.png")} />
-            <Image style={{ position: "absolute", right: 30, top: 20,width:22,height:22,objectFit:"cover" }} source={require("../../assets/icons/fav.png")} />
+            <Image style={{ position: "absolute", left: 15, top: 15, objectFit: "contain",width:33,height:33,objectFit:"contain"  }} source={require("../../assets/icons/save.png")} />
+            <Image style={{ position: "absolute", right: 15, top: 15,width:33,height:33,objectFit:"cover" }} source={require("../../assets/icons/fav.png")} />
             <LinearGradient
                 colors={['rgba(0, 0, 0, 0)', '#000000']}
                 start={{ x: 0, y: 0 }}
+                
                 end={{ x: 0, y: 1 }}
                 style={[{ position: 'absolute', bottom: 0, left: 0, width: width / 1.91, height: "50%", justifyContent: 'flex-end', borderRadius: 25, gap: 10 }, gradiendStyles]}
             >
