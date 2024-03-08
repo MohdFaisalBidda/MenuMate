@@ -4,7 +4,7 @@ import { SCREENS } from '../constants/screens';
 import LinearGradient from 'react-native-linear-gradient';
 import DishCard from '../Components/DishCard';
 const { width, height } = Dimensions.get("window");
-import dishes from "../constants/data"
+import { cooking, dishes } from "../constants/data"
 import FilterModal from '../Components/FilterModal';
 
 export default function Home({ navigation }) {
@@ -15,16 +15,26 @@ export default function Home({ navigation }) {
 
     const handleFilterChange = (text) => {
         setFilter(text);
+        if (selectedTab === "Restaurants") {
+            const filterData = dishes.filter((item) =>
+                item.dishName.toLowerCase().includes(text.toLowerCase())
+                ||
+                item.dishFrom.toLowerCase().includes(text.toLowerCase())
+                ||
+                item.dishCategories.some(cat => cat.toLowerCase().includes(text.toLowerCase()))
+            )
+            setData(filterData)
+        } else {
+            const filterData = cooking.filter((item) =>
+                item.dishName.toLowerCase().includes(text.toLowerCase())
+                ||
+                item.dishFrom.toLowerCase().includes(text.toLowerCase())
+                ||
+                item.dishCategories.some(cat => cat.toLowerCase().includes(text.toLowerCase()))
+            )
+            setData(filterData)
+        }
 
-        const filterData = dishes.filter((item) =>
-            item.dishName.toLowerCase().includes(text.toLowerCase())
-            ||
-            item.dishFrom.toLowerCase().includes(text.toLowerCase())
-            ||
-            item.dishCategories.some(cat => cat.toLowerCase().includes(text.toLowerCase()))
-        )
-
-        setData(filterData)
     }
 
     const handleFilterPress = () => {
@@ -72,12 +82,18 @@ export default function Home({ navigation }) {
             <View>
                 <View style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 10 }}>
                     <TouchableOpacity
-                        onPress={() => setSelectedTab('Restaurants')}
+                        onPress={() => {
+                            setSelectedTab('Restaurants');
+                            setData(dishes)
+                        }}
                         style={[styles.restaurantTab, { borderBottomColor: selectedTab === 'Restaurants' ? 'rgba(18, 44, 62, 1)' : "rgba(217, 217, 217, 1)", }]}>
                         <Text style={styles.restaurantText}>Restaurants</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        onPress={() => setSelectedTab('Cooking')}
+                        onPress={() => {
+                            setSelectedTab('Cooking');
+                            setData(cooking)
+                        }}
                         style={[styles.cookingTab, { borderBottomColor: selectedTab === 'Cooking' ? 'rgba(18, 44, 62, 1)' : "rgba(217, 217, 217, 1)", }]}>
                         <Text style={styles.cookingText}>Cooking</Text>
                     </TouchableOpacity>
@@ -97,7 +113,7 @@ export default function Home({ navigation }) {
                 </View>
                 <ScrollView horizontal style={{ marginVertical: 20 }}>
                     <View style={{ flexDirection: "row", gap: 10 }}>
-                        {data.map((item) => (
+                        {data?.map((item) => (
                             <DishCard name={item.dishName} from={item.dishFrom} cat1={item.dishCategories[0]} cat2={item.dishCategories[1]} cat3={item.dishCategories[2]} />
                         ))}
                     </View>
@@ -133,7 +149,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         paddingHorizontal: 45,
         elevation: 2,
-        fontSize: 14,
+        fontSize: 16,
         fontWeight: "400",
         fontFamily: "Urbanist-Regular"
 

@@ -6,10 +6,10 @@ const { width, height } = Dimensions.get("window");
 
 export default function DishCard({ name, from, cat1, cat2, cat3, containerStyle, imageStyles, gradiendStyles }) {
     return (
-        <View style={{ ...containerStyle, }}>
+        <View style={{ ...containerStyle,position:"relative" }}>
             <Image style={[styles.dishImage, imageStyles]} source={require("../../assets/images/dish.png")} />
-            <Image style={{ position: "absolute", left: 30, top: 10, width: 40, height: 40, objectFit: "contain" }} source={require("../../assets/icons/save.png")} />
-            <Image style={{ position: "absolute", right: 30, top: 10, width: 40, height: 40 }} source={require("../../assets/icons/fav.png")} />
+            <Image style={{ position: "absolute", left: 30, top: 20, objectFit: "contain",width:22,height:22,objectFit:"contain"  }} source={require("../../assets/icons/save.png")} />
+            <Image style={{ position: "absolute", right: 30, top: 20,width:22,height:22,objectFit:"cover" }} source={require("../../assets/icons/fav.png")} />
             <LinearGradient
                 colors={['rgba(0, 0, 0, 0)', '#000000']}
                 start={{ x: 0, y: 0 }}

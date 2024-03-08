@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Dimensions, ScrollView, FlatList } from 
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import DishCard from '../Components/DishCard'
 const { width, height } = Dimensions.get("window");
-import dishes from "../constants/data"
+import {dishes} from "../constants/data"
 
 
 export default function AllMeals({ navigation }) {
@@ -24,11 +24,11 @@ export default function AllMeals({ navigation }) {
     <View>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image style={{ marginTop: 5, objectFit: "fill", height: 20, width: 25 }} source={require("../../assets/icons/back.png")} />
+          <Image style={{ marginTop: 5, objectFit: "fill", objectFit: "contain" }} source={require("../../assets/icons/back.png")} />
         </TouchableOpacity>
         <Text style={styles.headerText}>Satisfy your Cravings</Text>
       </View>
-      <View style={{alignItems:"center",height,paddingBottom:100}}>
+      <View style={{ alignItems: "center", height, paddingBottom: 100 }}>
         <FlatList
           data={dishes}
           keyExtractor={(item, index) => index.toString()}

@@ -1,4 +1,4 @@
-export default dishes = [
+export const dishes = [
     {
         "dishName": "Fish Curry",
         "dishFrom": "Seafood Delights",
@@ -50,3 +50,58 @@ export default dishes = [
         "dishCategories": ["Veg", "Snack", "Gujarati"]
     },
 ]
+
+
+export const cooking = [
+    {
+        "dishName": "Spaghetti Bolognese",
+        "dishFrom": "Italy",
+        "dishCategories": ["Pasta", "Italian", "Meat"]
+    },
+    {
+        "dishName": "Chicken Curry",
+        "dishFrom": "India",
+        "dishCategories": ["Curry", "Indian", "Chicken"]
+    },
+    {
+        "dishName": "Beef Stir-Fry",
+        "dishFrom": "China",
+        "dishCategories": ["Stir-Fry", "Chinese", "Beef"]
+    },
+    {
+        "dishName": "Salmon Teriyaki",
+        "dishFrom": "Japan",
+        "dishCategories": ["Seafood", "Japanese", "Teriyaki"]
+    },
+    {
+        "dishName": "Mushroom Risotto",
+        "dishFrom": "Italy",
+        "dishCategories": ["Risotto", "Italian", "Vegetarian"]
+    },
+    {
+        "dishName": "Shrimp Scampi",
+        "dishFrom": "Italy",
+        "dishCategories": ["Seafood", "Italian", "Pasta"]
+    },
+    {
+        "dishName": "Vegetable Curry",
+        "dishFrom": "India",
+        "dishCategories": ["Curry", "Indian", "Vegetarian"]
+    },
+    {
+        "dishName": "Pad Thai",
+        "dishFrom": "Thailand",
+        "dishCategories": ["Stir-Fry", "Thai", "Noodles"]
+    },
+    {
+        "dishName": "Chicken Alfredo",
+        "dishFrom": "Italy",
+        "dishCategories": ["Pasta", "Italian", "Chicken"]
+    },
+    {
+        "dishName": "Sushi Rolls",
+        "dishFrom": "Japan",
+        "dishCategories": ["Sushi", "Japanese", "Seafood"]
+    }
+]
+
