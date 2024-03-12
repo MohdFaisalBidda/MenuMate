@@ -1,5 +1,3 @@
-
-https://github.com/MohdFaisalBidda/MenuMate/assets/96825384/7c6c3114-0f7f-4340-8d78-eeb4ef39341b
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
